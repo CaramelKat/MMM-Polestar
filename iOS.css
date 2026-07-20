@@ -4,7 +4,7 @@
   --polestar-dark-secondary: #2b2b2b;
 }
 @font-face {
-  src: url(./modules/MMM-Polestar/polestar.woff2) format("woff2");
+  src: url(./modules/MMM-Polestar/polestar.woff2) format("woff2"), url(./modules/MMM-Polestar/polestar.woff) format("woff");
   font-family: Polestar Unica;
   font-weight: 400;
   font-style: normal;
