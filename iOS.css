@@ -1,0 +1,194 @@
+:root {
+  --polestar-orange: #f06e00;
+  --polestar-light-secondary: #ebebeb;
+  --polestar-dark-secondary: #2b2b2b;
+}
+@font-face {
+  src: url(./modules/MMM-Polestar/polestar.woff2) format("woff2");
+  font-family: Polestar Unica;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.polestar-widget {
+  display: flex;
+  position: relative;
+  background-color: white;
+  color: black;
+  border-radius: 30px;
+  width: 400px;
+  height: 175px;
+  overflow: hidden;
+  font-family:
+    Polestar Unica,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+  flex-direction: column;
+}
+
+.polestar-widget.dark {
+  background-color: black;
+  color: white;
+}
+
+.polestar-widget.transparent {
+  background-color: transparent;
+  color: white;
+}
+
+.polestar-widget.square {
+  border-radius: 0;
+}
+
+.polestar-widget img {
+  width: 60%;
+  height: auto;
+}
+
+.polestar-widget > img:first-of-type {
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  width: 40px;
+  height: 40px;
+  filter: invert(1);
+}
+
+.polestar-widget.dark > img:first-of-type {
+  filter: invert(0);
+}
+
+.polestar-widget .upper {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-end;
+  position: relative;
+}
+
+.polestar-widget .upper .detail {
+  color: #747474;
+  position: absolute;
+  left: 12px;
+  bottom: 2px;
+  font-size: 10px;
+  text-align: start;
+}
+
+.polestar-widget.dark .upper .detail {
+  color: #9a9a9a;
+}
+
+.polestar-widget .upper .detail p {
+  margin: 0;
+}
+
+.polestar-widget .lower {
+  display: flex;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  padding-top: 0;
+  box-sizing: border-box;
+  justify-content: space-between;
+  gap: 4px;
+
+  button {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 4.25em;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--polestar-light-secondary);
+  }
+
+  button.selected {
+    background-color: var(--polestar-orange);
+  }
+
+  button:first-of-type {
+    border-bottom-left-radius: 20px;
+  }
+
+  button:last-of-type {
+    border-bottom-right-radius: 20px;
+  }
+
+  button img {
+    width: 45px;
+    height: auto;
+  }
+}
+
+.square {
+  button {
+    border-radius: 0 !important;
+  }
+
+  .lower {
+    padding: 0;
+  }
+}
+
+.dark {
+  button {
+    background-color: var(--polestar-dark-secondary) !important;
+    color: white;
+  }
+
+  button.selected {
+    background-color: var(--polestar-orange) !important;
+    color: white;
+  }
+
+  button img {
+    filter: invert(1);
+  }
+}
+
+.polestar-widget .side-content {
+  width: 50%;
+  margin-right: 1em;
+
+  h1 {
+    margin: 15px 0 5px 0;
+    font-size: 25px;
+    font-weight: normal;
+    text-align: start;
+  }
+
+  h2 {
+    margin: 10px 0;
+    font-size: 10px;
+    font-weight: normal;
+    text-align: start;
+  }
+}
+
+.polestar-widget .battery {
+  background-color: var(--polestar-light-secondary);
+  position: relative;
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+}
+
+.polestar-widget.dark .battery {
+  background-color: var(--polestar-dark-secondary);
+}
+
+.battery .indicator {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--polestar-orange);
+  transition: width 2s;
+}

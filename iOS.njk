@@ -1,0 +1,47 @@
+{% macro icon(name) %}
+  <img src="./modules/MMM-Polestar/icons/{{ name | safe }}.svg">
+{% endmacro %}
+<div class="polestar">
+  <div class="polestar-widget {{ theme }}">
+    {{ icon('ic_widget_polestar') }}
+    <div class="upper">
+      <div class="detail">
+        {% if updated_at %}
+        <p>{{ model }}</p>
+        <p>at {{ updated_at }}</p>
+        {% endif %}
+      </div>
+      <div class="side-content">
+        <h1>
+        {{ battery_percent }}%
+        </h1>
+        <div class="battery">
+          <span class="indicator" style="width: {{ battery_percent }}%"></span>
+        </div>
+        <h2>{{ status }}</h2>
+      </div>
+    </div>
+    <div class="lower">
+      <button
+        {% if locked %}class="selected"{% endif %}
+        id="locked">
+          {{ icon('ic_widget_action_lock') }}
+      </button>
+      <button
+        {% if unlocked %}class="selected"{% endif %}
+        id="unlocked">
+          {{ icon('ic_widget_action_unlock') }}
+      </button>
+      <button
+        {% if climateOn %}class="selected"{% endif %}
+        id="climateOn">
+          {{ icon('ic_widget_action_climate') }}
+      </button>
+      <button
+        {% if climateOff %}class="selected"{% endif %}
+        id="climateOff" >
+          {{ icon('ic_widget_climate_stop') }}
+      </button>
+    </div>
+  </div>
+</div>
