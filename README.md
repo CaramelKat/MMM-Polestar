@@ -4,7 +4,7 @@
 
 ## Screenshot
 
-![Example of MMM-Template](./example_1.png)
+![Example of MMM-Polestar](./screenshot.png)
 
 ## Installation
 
