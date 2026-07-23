@@ -1,5 +1,5 @@
-const NodeHelper = require("node_helper")
-const { PolestarAPI } = require("polestar-api")
+const NodeHelper = require('node_helper')
+const { PolestarAPI } = require('polestar-api')
 
 module.exports = NodeHelper.create({
 
@@ -8,20 +8,20 @@ module.exports = NodeHelper.create({
   buildStatus(battery, climate, payload) {
     const { units } = payload
 
-    if (!battery || !climate) return "Unknown"
+    if (!battery || !climate) return 'Unknown'
 
     if (climate.runningStatus == 1) {
-      let ventilation = "Unknown"
+      let ventilation = 'Unknown'
       let targetTemp = climate.requestedCompartmentTemperatureCelsius ?? 0
-      if (units == "imperial")
+      if (units == 'imperial')
         targetTemp = targetTemp * 1.8 + 32
 
       switch (climate.ventilation) {
         case 1:
-          ventilation = "Cooling"
+          ventilation = 'Cooling'
           break
         case 2:
-          ventilation = "Heating"
+          ventilation = 'Heating'
           break
       }
 
@@ -31,13 +31,13 @@ module.exports = NodeHelper.create({
     if (battery.chargerConnectionStatus == 1) {
       switch (battery.chargingStatus) {
         case 2:
-          return "Connected"
+          return 'Connected'
         case 7:
-          return "Charging done"
+          return 'Charging done'
       }
     }
 
-    return "Ready"
+    return 'Ready'
   },
 
   buildTimestamp(utcSeconds, payload) {
@@ -45,17 +45,17 @@ module.exports = NodeHelper.create({
 
     const date = new Date(0)
     date.setUTCSeconds(utcSeconds)
-    return date.toLocaleTimeString(locale, { hour: "numeric", minute: "2-digit", timeZone: timezone })
+    return date.toLocaleTimeString(locale, { hour: 'numeric', minute: '2-digit', timeZone: timezone })
   },
 
   async socketNotificationReceived(notification, payload) {
     const { email, password, vin } = payload
     switch (notification) {
-      case "LOGIN":
+      case 'LOGIN':
         if (!this.api)
           this.api = new PolestarAPI(email, password)
         break
-      case "UPDATE":
+      case 'UPDATE':
       {
         if (!this.api || !vin) return
 
@@ -65,7 +65,7 @@ module.exports = NodeHelper.create({
         const battery = await this.api.getLatestBattery(car)
         const exterior = await this.api.getLatestExterior(car)
         const climate = await this.api.getLatestParkingClimatization(car)
-        const image = await this.api.getCarImage(car, "transparent", 5)
+        const image = await this.api.getCarImage(car, 'transparent', 5)
 
         const widgetPayload = {
           model: car.modelName,
@@ -78,9 +78,9 @@ module.exports = NodeHelper.create({
           climateOn: climate.runningStatus == 1,
           climateOff: climate.runningStatus == 2,
           status: this.buildStatus(battery, climate, payload),
-          imageURL: image.url
+          imageURL: image.url,
         }
-        this.sendSocketNotification("UPDATE", widgetPayload)
+        this.sendSocketNotification('UPDATE', widgetPayload)
         break
       }
     }

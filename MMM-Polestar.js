@@ -1,39 +1,39 @@
-Module.register("MMM-Polestar", {
+Module.register('MMM-Polestar', {
 
   defaults: {
-    email: "",
-    password: "",
-    vin: "",
-    timezone: "America/Chicago",
-    units: "imperial",
-    locale: "en-UK",
-    style: "iOS",
-    theme: "light",
-    refreshInterval: 5
+    email: '',
+    password: '',
+    vin: '',
+    timezone: 'America/Chicago',
+    units: 'imperial',
+    locale: 'en-US',
+    style: 'iOS',
+    theme: 'light',
+    refreshInterval: 5,
   },
 
   getTemplate: function () {
     switch (this.config.style) {
-      case "iOS":
+      case 'iOS':
       default:
-        return "iOS.njk"
+        return 'iOS.njk'
     }
   },
 
   getStyles() {
     switch (this.config.style) {
-      case "iOS":
+      case 'iOS':
       default:
-        return ["iOS.css"]
+        return ['iOS.css']
     }
   },
 
   start() {
     Log.info(`Starting ${this.name}`)
-    this.sendSocketNotification("LOGIN", this.config)
+    this.sendSocketNotification('LOGIN', this.config)
 
     this.widgetPayload = {
-      model: "Unknown",
+      model: 'Unknown',
       battery_percent: 0,
       charging_status: undefined,
       time_remaining: undefined,
@@ -42,8 +42,8 @@ Module.register("MMM-Polestar", {
       unlocked: undefined,
       climate_on: undefined,
       climate_off: undefined,
-      status: "Loading...",
-      theme: this.config.theme
+      status: 'Loading...',
+      theme: this.config.theme,
     }
 
     this.updateWidget()
@@ -51,7 +51,7 @@ Module.register("MMM-Polestar", {
   },
 
   socketNotificationReceived: function (notification, payload) {
-    if (notification === "UPDATE") {
+    if (notification === 'UPDATE') {
       this.widgetPayload = payload
       this.widgetPayload.theme = this.config.theme
       this.updateDom()
@@ -63,12 +63,12 @@ Module.register("MMM-Polestar", {
   },
 
   updateWidget() {
-    this.sendSocketNotification("UPDATE", this.config)
+    this.sendSocketNotification('UPDATE', this.config)
   },
 
   notificationReceived(notification, payload) {
-    if (notification === "UPDATE") {
+    if (notification === 'UPDATE') {
       this.widgetPayload = payload
     }
-  }
+  },
 })
