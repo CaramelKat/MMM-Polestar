@@ -12,9 +12,13 @@ module.exports = NodeHelper.create({
 
     if (climate.runningStatus == 1) {
       let ventilation = 'Unknown'
+      let unit = '°C'
       let targetTemp = climate.requestedCompartmentTemperatureCelsius ?? 0
-      if (units == 'imperial')
+
+      if (units == 'imperial') {
         targetTemp = targetTemp * 1.8 + 32
+        unit = '°F'
+      }
 
       switch (climate.ventilation) {
         case 1:
@@ -25,15 +29,21 @@ module.exports = NodeHelper.create({
           break
       }
 
-      return `${ventilation} to ${targetTemp}`
+      return `${ventilation} to ${targetTemp}${unit}`
     }
-
+    console.info(battery)
     if (battery.chargerConnectionStatus == 1) {
       switch (battery.chargingStatus) {
+        case 1:
+          return 'Charging'
         case 2:
           return 'Connected'
+        case 3:
+          return 'Scheduled'
         case 7:
           return 'Charging done'
+        default:
+          return `Unknown: ${battery.chargingStatus}`
       }
     }
 

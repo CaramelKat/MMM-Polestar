@@ -11,6 +11,11 @@
   font-display: swap;
 }
 
+.polestar {
+  display: flex;
+  justify-content: right;
+}
+
 .polestar-widget {
   display: flex;
   position: relative;
@@ -29,9 +34,41 @@
   flex-direction: column;
 }
 
+.polestar-widget.small {
+  width: 175px;
+  .upper {
+    justify-content: start;
+    align-items: start;
+    padding: 10px 20px;
+    width: auto;
+    height: 100%;
+    justify-content: end;
+  }
+  .lower {
+    display: none;
+  }
+  .detail {
+    top: 15px;
+    right: 15px !important;
+    left: unset !important;
+    bottom: unset;
+  }
+  .side-content {
+    width: 100%;
+    h1 {
+      font-size: 35px;
+    }
+  }
+}
+
 .polestar-widget.dark {
   background-color: black;
   color: white;
+}
+
+.dark.gradient {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgb(23 23 23) 70%, rgb(67 66 66) 100%);
+  box-shadow: #ffffff6e inset 0px 0px 2px;
 }
 
 .polestar-widget.transparent {
@@ -75,9 +112,10 @@
   color: #747474;
   position: absolute;
   left: 12px;
-  bottom: 2px;
+  bottom: 10px;
   font-size: 10px;
   text-align: start;
+  font-weight: 400;
 }
 
 .polestar-widget.dark .upper .detail {
@@ -92,7 +130,7 @@
   display: flex;
   bottom: 0;
   width: 100%;
-  padding: 10px;
+  padding: 7px;
   padding-top: 0;
   box-sizing: border-box;
   justify-content: space-between;
@@ -112,11 +150,11 @@
   }
 
   button:first-of-type {
-    border-bottom-left-radius: 20px;
+    border-bottom-left-radius: 23px;
   }
 
   button:last-of-type {
-    border-bottom-right-radius: 20px;
+    border-bottom-right-radius: 23px;
   }
 
   button img {
@@ -146,7 +184,7 @@
     color: white;
   }
 
-  button img {
+  button img, .side-content h2 > img {
     filter: invert(1);
   }
 }
@@ -164,9 +202,18 @@
 
   h2 {
     margin: 10px 0;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: normal;
     text-align: start;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  h2 > img {
+    height: 1em;
+    width: min-content;
+    margin-right: 1ch;
   }
 }
 

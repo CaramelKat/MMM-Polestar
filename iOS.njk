@@ -1,8 +1,18 @@
 {% macro icon(name) %}
-  <img src="./modules/MMM-Polestar/icons/{{ name | safe }}.svg">
+  <img src="./modules/MMM-Polestar/icons/{{ name | safe }}.svg" onerror="this.style.display='none'">
 {% endmacro %}
+
+{% macro getStateIcon(state) %}
+{%- set states = {
+  '1': "ic_widget_charging",
+  '2': "ic_widget_cable",
+  '3': "ic_widget_schedule"
+  } -%}
+{{ icon(states[state]) }}
+{% endmacro %}
+
 <div class="polestar">
-  <div class="polestar-widget {{ theme }}">
+  <div class="polestar-widget small {{ theme }}">
     {{ icon('ic_widget_polestar') }}
     <div class="upper">
       <div class="detail">
@@ -18,7 +28,7 @@
         <div class="battery">
           <span class="indicator" style="width: {{ battery_percent }}%"></span>
         </div>
-        <h2>{{ status }}</h2>
+        <h2>{{ getStateIcon(charging_status) }} {{ status }}</h2>
       </div>
     </div>
     <div class="lower">
