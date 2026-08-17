@@ -33,7 +33,7 @@ module.exports = NodeHelper.create({
       return `${ventilation} to ${targetTemp}${unit}`
     }
     console.info(battery)
-    const batteryDoneAt = moment(new Date()).add(battery.estimatedChargingTimeToFullMinutes ?? 0, 'm').format('h:mm:ss A')
+    const batteryDoneAt = moment(new Date()).add(battery.estimatedChargingTimeToFullMinutes ?? 0, 'm').format('h:mm A')
     if (battery.chargerConnectionStatus == 1) {
       switch (battery.chargingStatus) {
         case 1:
