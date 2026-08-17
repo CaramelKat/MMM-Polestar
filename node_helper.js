@@ -1,4 +1,5 @@
 const NodeHelper = require('node_helper')
+const moment = require('moment')
 const { PolestarAPI } = require('polestar-api')
 
 module.exports = NodeHelper.create({
@@ -32,10 +33,11 @@ module.exports = NodeHelper.create({
       return `${ventilation} to ${targetTemp}${unit}`
     }
     console.info(battery)
+    const batteryDoneAt = moment(new Date()).add(battery.estimatedChargingTimeToFullMinutes ?? 0, 'm').format('h:mm:ss A')
     if (battery.chargerConnectionStatus == 1) {
       switch (battery.chargingStatus) {
         case 1:
-          return 'Charging'
+          return `Done ${batteryDoneAt}`
         case 2:
           return 'Connected'
         case 3:

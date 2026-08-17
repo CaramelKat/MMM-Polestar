@@ -14,9 +14,9 @@
   },
   "keywords": [
     "magic mirror",
-	"smart mirror",
-	"module",
-	"polestar"
+    "smart mirror",
+    "module",
+    "polestar"
   ],
   "author": "Jemma Poffinbarger",
   "license": "MIT",
@@ -33,6 +33,7 @@
     "globals": "^17.7.0"
   },
   "dependencies": {
+    "moment": "^2.30.1",
     "polestar-api": "^1.0.1"
   }
 }
