@@ -36,6 +36,7 @@ Module.register('MMM-Polestar', {
       model: 'Unknown',
       battery_percent: 0,
       charging_status: undefined,
+      charger_connected: undefined,
       time_remaining: undefined,
       updated_at: undefined,
       locked: undefined,

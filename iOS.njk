@@ -8,7 +8,7 @@
   '2': "ic_widget_cable",
   '3': "ic_widget_schedule"
   } -%}
-{{ icon(states[state]) }}
+{% if states[state] %}{{ icon(states[state]) }}{% endif %}
 {% endmacro %}
 
 <div class="polestar">
@@ -28,7 +28,7 @@
         <div class="battery">
           <span class="indicator" style="width: {{ battery_percent }}%"></span>
         </div>
-        <h2>{{ getStateIcon(charging_status) }} {{ status }}</h2>
+        <h2>{% if charger_connected %}{{ getStateIcon(charging_status) }}{% endif %} {{ status }}</h2>
       </div>
     </div>
     <div class="lower">

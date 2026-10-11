@@ -83,6 +83,7 @@ module.exports = NodeHelper.create({
           model: car.modelName,
           battery_percent: battery.batteryChargeLevelPercentage,
           charging_status: battery.chargingStatus,
+          charger_connected: battery.chargerConnectionStatus === 1,
           time_remaining: this.buildTimestamp(battery.estimatedChargingTimeMinutesToMinimumSoc, payload),
           updated_at: this.buildTimestamp(battery.timestamp.seconds, payload),
           locked: exterior.centralLock == 2,
