@@ -39,7 +39,7 @@ module.exports = NodeHelper.create({
         case 1:
           return `Done ${batteryDoneAt}`
         case 2:
-          return 'Connected'
+          return 'Not charging'
         case 3:
           return 'Scheduled'
         case 5:
