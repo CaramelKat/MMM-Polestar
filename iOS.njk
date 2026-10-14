@@ -6,7 +6,8 @@
 {%- set states = {
   '1': "ic_widget_charging",
   '2': "ic_widget_cable",
-  '3': "ic_widget_schedule"
+  '3': "ic_widget_schedule",
+  '5': "ic_widget_cable"
   } -%}
 {% if states[state] %}{{ icon(states[state]) }}{% endif %}
 {% endmacro %}

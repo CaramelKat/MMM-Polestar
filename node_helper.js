@@ -34,7 +34,7 @@ module.exports = NodeHelper.create({
     }
     console.info(battery)
     const batteryDoneAt = moment(new Date()).add(battery.estimatedChargingTimeToFullMinutes ?? 0, 'm').format('h:mm A')
-    if (battery.chargerConnectionStatus == 1) {
+    if (battery.chargerConnectionStatus != 0) {
       switch (battery.chargingStatus) {
         case 1:
           return `Done ${batteryDoneAt}`
@@ -42,6 +42,8 @@ module.exports = NodeHelper.create({
           return 'Connected'
         case 3:
           return 'Scheduled'
+        case 5:
+          return 'Charging error'
         case 7:
           return 'Charging done'
         default:
